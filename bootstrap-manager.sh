@@ -48,7 +48,7 @@ lFaVMra8N4cVRq6ldkduG4AmpcjD2af3XER2ts1es3eXxUlrKNV4oBY7kk2k2ssN
 GSm7lwKBgQD1zywI8lhmXxzWSXAmkGPIq0RkG2yych0tEKfEpNf1t95bPin0cjYL
 RJHJzpRGQgcnvrnEM4uMBS6jEuTyiPozn8pt/il4xy3U7joAVGW+OXzn491HSyCi
 stZTbPBXW6NtLdYeZaz6UXqczM6kKxhjqAiYGCmPoj/UFuDJ3z0ojQ==
------END RSA PRIVATE KEY-----" >> /home/ansible/.ssh/id_rsa
+-----END RSA PRIVATE KEY-----" > /home/ansible/.ssh/id_rsa
 chmod 700 /home/ansible/.ssh
 chmod 600 /home/ansible/.ssh/id_rsa
 chown -R ansible:ansible /home/ansible/.ssh
