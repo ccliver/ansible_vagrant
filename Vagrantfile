@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :manager do |manager|
     manager.vm.box = BOX
     manager.vm.hostname = 'manager'
-    manager.vm.network :private_network, ip: '172.16.0.1', netmask: '255.255.254.0'
+    manager.vm.network :private_network, ip: '172.16.0.10', netmask: '255.255.254.0'
     manager.vm.provider 'virtualbox' do |vb|
       vb.memory = '512'
     end
