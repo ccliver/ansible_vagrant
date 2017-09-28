@@ -14,7 +14,7 @@ HOST=1
 echo "[hosts]" > /etc/ansible/hosts
 while [[ $HOST -le $1 ]]
 do
-  echo "172.16.1.$HOST host$HOST" >> /etc/hosts
+  echo "172.16.1.`expr $HOST + 10` host$HOST" >> /etc/hosts
   echo "host$HOST  ansible_connection=ssh ansible_user=ansible" >> /etc/ansible/hosts
   HOST=`expr $HOST + 1`
 done
