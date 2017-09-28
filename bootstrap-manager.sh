@@ -49,8 +49,15 @@ GSm7lwKBgQD1zywI8lhmXxzWSXAmkGPIq0RkG2yych0tEKfEpNf1t95bPin0cjYL
 RJHJzpRGQgcnvrnEM4uMBS6jEuTyiPozn8pt/il4xy3U7joAVGW+OXzn491HSyCi
 stZTbPBXW6NtLdYeZaz6UXqczM6kKxhjqAiYGCmPoj/UFuDJ3z0ojQ==
 -----END RSA PRIVATE KEY-----" > /home/ansible/.ssh/id_rsa
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDoxu6OLwXxTjBPEt2CDNBne/H/TB0wxqaRYpZIf4V9AmoxsJbzOGapYrq7ZqG6BcyMNL1XL+zy4tk2CY7HoOlUhrFupmUjtoL3KndgoroYaSDWyikSoFxmtNJKmQ1m/V3RuYP4inEe5rvLAcfgEHNHoJE+I12NSfOB7kg+7QG/IYLKPWXoZZQyjpqWtmbdQ5iqZ14qtP+RlDnXgNnFEb8kkdb+n8pIMEDj3FvXbeFQkcOsDBwpVmW4U05m84w4AropsnX7h7v+4VwbN6JtdHpGyx2iBwh5Y9t5gkdc4D1AKYYmlVpScQkN/Y3542RByzdOzPBBhVlnAfViz59kDvZ7" >> /home/ansible/.ssh/authorized_keys
 chmod 700 /home/ansible/.ssh
-chmod 600 /home/ansible/.ssh/id_rsa
+chmod 600 /home/ansible/.ssh/id_rsa*
 chown -R ansible:ansible /home/ansible/.ssh
 echo "ansible ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
 chmod 0440 /etc/sudoers.d/ansible
+
+echo "syntax on" > /home/ansible/.vimrc
+echo "set tabstop=2" >> /home/ansible/.vimrc
+echo "set shiftwidth=2" >> /home/ansible/.vimrc
+echo "set expandtab" >> /home/ansible/.vimrc
+chown ansible:ansible /home/ansible/.vimrc
