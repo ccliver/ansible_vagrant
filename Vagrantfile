@@ -2,13 +2,16 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  HOSTS=2
+  HOSTS=1
   BOX='ubuntu/xenial64'
   PORTS_TO_FORWARD = {
-    # 80 => 8080
+    # 'host1' => {
+    #   'ports' => [
+    #     [443, 4443],
+    #     [80, 8080]
+    #   ]
+    # }
   }
-  ANSIBLE_PRIVATE_KEY =
-  ANSIBLE_PUBLIC_KEY = 
 
   config.vm.define :manager do |manager|
     manager.vm.box = BOX
@@ -24,14 +27,19 @@ Vagrant.configure("2") do |config|
   end
 
   (1..HOSTS).each do |instance|
-    config.vm.define "host#{instance}" do |host|
+    hostname = "host#{instance}"
+    config.vm.define hostname do |host|
       host.vm.box = BOX
-      host.vm.hostname = "host#{instance}"
+      host.vm.hostname = hostname
       host.vm.network :private_network, ip: "172.16.1.#{instance + 10}", netmask: '255.255.254.0'
       host.vm.provider 'virtualbox' do |vb|
         vb.memory = '512'
       end
-      PORTS_TO_FORWARD.each { |k,v| host.vm.network 'forwarded_port', guest: k, host: v }
+      if PORTS_TO_FORWARD.include?(hostname)
+        PORTS_TO_FORWARD[hostname]['ports'].each do |ports|
+          host.vm.network 'forwarded_port', guest: ports[0], host: ports[1]
+        end
+      end
       host.vm.provision :shell, path: 'bootstrap-node.sh'
     end
   end
