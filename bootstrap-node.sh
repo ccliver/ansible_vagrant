@@ -1,5 +1,6 @@
 #!/bin/bash
 
+apt-get -y update
 apt-get -y install python
 useradd -m -d /home/ansible ansible
 mkdir /home/ansible/.ssh
