@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Setup the local hosts file
+HOST=1
+while [[ $HOST -le $1 ]]
+do
+  echo "172.16.1.`expr $HOST + 10` host$HOST" >> /etc/hosts
+  HOST=`expr $HOST + 1`
+done
+
 apt-get -y update
 apt-get -y install python
 useradd -m -d /home/ansible ansible

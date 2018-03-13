@@ -2,13 +2,13 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  HOSTS=1
+  HOSTS=2
   BOX='ubuntu/xenial64'
   PORTS_TO_FORWARD = {
     # 'host1' => {
     #   'ports' => [
-    #     [443, 4443],
-    #     [80, 8080]
+    #     [ 443, 4443 ], # [ guest, host ]
+    #     [ 80, 8080 ]
     #   ]
     # }
   }
@@ -40,7 +40,10 @@ Vagrant.configure("2") do |config|
           host.vm.network 'forwarded_port', guest: ports[0], host: ports[1]
         end
       end
-      host.vm.provision :shell, path: 'bootstrap-node.sh'
+      host.vm.provision :shell do |s|
+        s.path =  'bootstrap-node.sh'
+        s.args = HOSTS
+      end
     end
   end
 
