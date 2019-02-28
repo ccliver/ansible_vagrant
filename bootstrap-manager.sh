@@ -61,3 +61,6 @@ echo "set tabstop=2" >> /home/ansible/.vimrc
 echo "set shiftwidth=2" >> /home/ansible/.vimrc
 echo "set expandtab" >> /home/ansible/.vimrc
 chown ansible:ansible /home/ansible/.vimrc
+
+apt-get -y install python-pip
+pip install ansible-lint
