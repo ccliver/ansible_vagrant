@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   HOSTS=2
-  BOX='ubuntu/xenial64'
+  BOX='centos/7'
   PORTS_TO_FORWARD = {
     # 'host1' => {
     #   'ports' => [
@@ -46,6 +46,4 @@ Vagrant.configure("2") do |config|
       end
     end
   end
-
-  config.vm.synced_folder "synced_data/", "/srv/synced_data"
 end

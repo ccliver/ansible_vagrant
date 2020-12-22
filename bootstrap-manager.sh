@@ -2,12 +2,11 @@
 
 
 # Install Ansible
-apt-get -y update
-apt-get -y install software-properties-common
-apt-add-repository -y ppa:ansible/ansible
-apt-get -y update
-apt-get -y install ansible
-cp /srv/synced_data/ansible.cfg /etc/ansible/
+yum -y update
+yum -y install python3-pip
+pip3 install ansible==2.7
+pip3 install ansible-lint
+cp /vagrant/ansible.cfg /etc/ansible/
 
 # Setup the local and Ansible hosts files
 HOST=1
@@ -61,6 +60,4 @@ echo "set tabstop=2" >> /home/ansible/.vimrc
 echo "set shiftwidth=2" >> /home/ansible/.vimrc
 echo "set expandtab" >> /home/ansible/.vimrc
 chown ansible:ansible /home/ansible/.vimrc
-
-apt-get -y install python-pip
-pip install ansible-lint
+echo "PATH=$PATH:/usr/local/bin" >> /home/ansible/.bashrc
